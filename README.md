@@ -98,7 +98,7 @@ Email: test@gmail.com
 │       ├── Admin/
 │       │   ├── blog/
 │       │   └── category/
-│       └── Frontend/
+│       └── Front/
 └── routes/
     └── web.php
 ```
@@ -132,16 +132,5 @@ Email: test@gmail.com
 - category_id (Foreign Key → categories.id)
 - timestamps
 
-
-
- 
-
- 
-
-## 📝 Lisans
-
-Bu proje MIT lisansı ile lisanslanmıştır.
-
- 
 
 [Sinem Türkoğlu](https://github.com/sinemturkoglu)
