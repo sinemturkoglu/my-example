@@ -31,13 +31,13 @@ Laravel tabanlı, çoklu kategori destekli blog yönetim sistemi. Admin paneli v
 - **Backend**: Laravel 11
 - **Database**: MySQL
 - **Frontend**: Blade Template , Bootstrap/Tabler
-- **JavaScript**: jQuery, Select2
+- **JavaScript**: jQuery
 
 ## 📋 Gereksinimler
 
 - PHP >= 8.1
 - Composer
-- MySQL >= 5.7 veya MariaDB
+- MySQL >= 5.7
 
 
 ## ⚙️ Kurulum
