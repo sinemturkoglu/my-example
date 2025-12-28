@@ -7,54 +7,141 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Laravel Blog & Kategori Yönetim Sistemi
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Laravel tabanlı, çoklu kategori destekli blog yönetim sistemi. Admin paneli ve ön yüz arayüzü ile birlikte gelir.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Özellikler
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Admin Panel
+- ✅ Blog CRUD işlemleri (Ekleme, Düzenleme, Silme, Listeleme ) ve Listeleme sayfasında durum değişikliği
+- ✅ Kategori yönetimi
+- ✅ Bloglara çoklu kategori atama (Many-to-Many ilişki)
+- ✅ Blog sıralama ve durum yönetimi
+- ✅ Arama ve filtreleme özellikleri
+- ✅ Form validasyonları
 
-## Learning Laravel
+### Ön Yüz
+- 📄 Kategori listeleme sayfası
+- 📄 Kategoriye göre blog listeleme
+- 📄 Blog detay sayfası
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🛠️ Teknolojiler
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Backend**: Laravel 11
+- **Database**: MySQL
+- **Frontend**: Blade Template , Bootstrap/Tabler
+- **JavaScript**: jQuery, Select2
 
-## Laravel Sponsors
+## 📋 Gereksinimler
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- PHP >= 8.1
+- Composer
+- MySQL >= 5.7 veya MariaDB
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## ⚙️ Kurulum
 
-## Contributing
+### 1. Projeyi Klonlayın
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 2. Bağımlılıkları Yükleyin
 
-## Code of Conduct
+### 3. Environment Ayarları
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+`.env.example` dosyasını `.env` olarak kopyalayın:
+`.env` dosyasında veritabanı ayarlarınızı yapın:
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 4. Uygulama Anahtarı Oluşturun
+```bash
+php artisan key:generate
+```
 
-## License
+### 5. Veritabanını Oluşturun ve Migration'ları Çalıştırın
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# my-example
+**Not**: `--seed` parametresi ile otomatik olarak:
+- Test verileri oluşturulur
+- Admin kullanıcısı eklenir
+- Örnek kategoriler ve bloglar yüklenir
+
+### 6. Uygulamayı Başlatın
+
+
+## 👤 Test Kullanıcısı
+
+Migration'lar çalıştırıldıktan sonra aşağıdaki bilgiler ile giriş yapabilirsiniz:
+```
+Email: test@gmail.com
+Şifre: test123
+```
+
+
+## 📁 Proje Yapısı
+```
+├── app/
+│   ├── Http/Controllers/
+│   │   └── Admin/
+│   │       ├── BlogsController.php
+│   │       └── CategoryController.php
+│   └── Models/
+│       ├── Blogs.php
+│       └── Category.php
+├── database/
+│   ├── migrations/
+│   │   ├── xxxx_create_blogs_table.php
+│   │   ├── xxxx_create_categories_table.php
+│   │   └── xxxx_create_blog_category_table.php
+│   └── seeders/
+│       └── DatabaseSeeder.php
+├── resources/
+│   └── views/
+│       ├── Admin/
+│       │   ├── blog/
+│       │   └── category/
+│       └── Frontend/
+└── routes/
+    └── web.php
+```
+
+## 🗄️ Veritabanı Yapısı
+
+### Tablolar
+
+#### `blogs`
+- id
+- title
+- slug
+- content
+- sort
+- is_active
+- timestamps
+
+#### `categories`
+- id
+- title
+- slug
+- short_description
+- image
+- sort
+- is_active
+- timestamps
+
+#### `blog_category` (Pivot Table)
+- id
+- blog_id (Foreign Key → blogs.id)
+- category_id (Foreign Key → categories.id)
+- timestamps
+
+
+
+ 
+
+ 
+
+## 📝 Lisans
+
+Bu proje MIT lisansı ile lisanslanmıştır.
+
+ 
+
+[Sinem Türkoğlu](https://github.com/sinemturkoglu)
