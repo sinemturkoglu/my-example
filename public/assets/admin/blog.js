@@ -1,3 +1,24 @@
+document.querySelectorAll('.delete-blog-btn').forEach(button => {
+    button.onclick = function (e) {
+        e.preventDefault();
+        const form = this.closest('.delete-blog-form');
+
+        Swal.fire({
+            title: 'Emin misiniz?',
+            text: "Bu blog silinecek!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Evet, Sil!',
+            cancelButtonText: 'İptal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    };
+});
 
 $(document).on('change', '.activeBlog', function () {
     var id = $(this).attr("id");
@@ -94,7 +115,5 @@ $('.sefTitle').keyup(function (event) {
     var seflink_language = "seflink";
     document.getElementById(seflink_language).value = kucukCumle;
 });
-
-
 
 

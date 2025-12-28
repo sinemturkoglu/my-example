@@ -62,16 +62,18 @@
                                     <div class="btn-list flex-nowrap">
                                        
                                         <a href="{{ route('blog.edit', $blog->id) }}" >Düzenle</a>
-                                        <form action="{{ route('blog.destroy', $blog->id) }}"
+                                  
+                                        <form class="delete-blog-form" 
+                                            action="{{ route('blog.destroy', $blog->id) }}"
                                             method="POST"
-                                            onsubmit="return confirm('Bu blogu silmek istediğinize emin misiniz?')"
                                             style="display:inline-block">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                Sil
+                                            <button type="button" class="btn btn-danger btn-sm delete-blog-btn">
+                                                <i class="fas fa-trash"></i> Sil
                                             </button>
                                         </form>
+
                                     </div>
                                 </td>
                                 </tr>

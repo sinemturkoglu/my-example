@@ -48,7 +48,7 @@
                                     <div class="btn-list flex-nowrap">
                                        
                                         <a href="{{ route('categories.edit', $category->id) }}" >Düzenle</a>
-                                        <form action="{{ route('categories.destroy', $category->id) }}"
+                                        <!-- <form action="{{ route('categories.destroy', $category->id) }}"
                                             method="POST"
                                             onsubmit="return confirm('Bu kategoriyi silmek istediğinize emin misiniz?')"
                                             style="display:inline-block">
@@ -59,7 +59,19 @@
                                             <button type="submit" class="btn btn-danger btn-sm">
                                                 Sil
                                             </button>
+                                        </form> -->
+
+                                          <form class="delete-category-form" 
+                                            action="{{ route('categories.destroy', $category->id) }}"
+                                            method="POST"
+                                            style="display:inline-block">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-danger btn-sm delete-category-btn">
+                                                <i class="fas fa-trash"></i> Sil
+                                            </button>
                                         </form>
+
                                     </div>
                                 </td>
                                 </tr>

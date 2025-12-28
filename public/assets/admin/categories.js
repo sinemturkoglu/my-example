@@ -1,4 +1,24 @@
+document.querySelectorAll('.delete-category-btn').forEach(button => {
+    button.onclick = function (e) {
+        e.preventDefault();
+        const form = this.closest('.delete-category-form');
 
+        Swal.fire({
+            title: 'Emin misiniz?',
+            text: "Bu kategori silinecek!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Evet, Sil!',
+            cancelButtonText: 'İptal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    };
+});
 
 $(document).on('change', '.activeCategory', function () {
     var id = $(this).attr("id");
