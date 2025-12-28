@@ -87,21 +87,18 @@ class CategoryController extends Controller
 
     public function status(Request $request)
     {   
-       $id = $request->input('id');
-       $status = $request->input('status'); 
+        $validated = $request->validate([
+            'id' => 'required|exists:categories,id',
+            'status' => 'required'
+        ]);
 
-       $category = Category::findOrFail($request->id);
-       if(!empty($category)){
-            $category->is_active = $request->status;
-            $category->save();
-        if(!empty($category)){
-            return response()->json(['success' => true, 'message' => 'Kategori durumu güncellendi.']);
-        }else {
-            return response()->json(['error' => true, 'message' => 'Beklenmedik hata oluştu.']);
-        }
-       } else {
-        return response()->json(['error' => true, 'message' => 'Teknik bir sorun oluştu.']);
-       }
+        Category::findOrFail($validated['id'])
+            ->update(['is_active' => $validated['status']]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Kategori durumu güncellendi.'
+        ]);
 
     }
 }

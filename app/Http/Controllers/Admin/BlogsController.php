@@ -121,21 +121,18 @@ class BlogsController extends Controller
     }
     public function status(Request $request)
     {   
-       $id = $request->input('id');
-       $status = $request->input('status'); 
+        $validated = $request->validate([
+            'id' => 'required|exists:blogs,id',
+            'status' => 'required|boolean'
+        ]);
 
-       $blog = Blogs::findOrFail($request->id);
-       if(!empty($blog)){
-            $blog->is_active = $request->status;
-            $blog->save();
-        if(!empty($blog)){
-            return response()->json(['success' => true, 'message' => 'Blog durumu güncellendi.']);
-        }else {
-            return response()->json(['error' => true, 'message' => 'Beklenmedik hata oluştu.']);
-        }
-       } else {
-        return response()->json(['error' => true, 'message' => 'Teknik bir sorun oluştu.']);
-       }
+        Blogs::findOrFail($validated['id'])
+            ->update(['is_active' => $validated['status']]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Blog durumu güncellendi.'
+        ]);
 
     }
 }
